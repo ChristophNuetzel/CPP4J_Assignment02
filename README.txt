@@ -1,1 +1,1 @@
-first commit 
+This repository contains our solution to assignment no.2 for C++ for Java Programmers WS2012/13, Beuth-Hochschule für Technik Berlin
