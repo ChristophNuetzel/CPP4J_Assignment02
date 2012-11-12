@@ -1,12 +1,13 @@
 #ifndef TREEITERATOR_H
 #define TREEITERATOR_H
 
+// TODO INCLUDE THE NAMESPACE CPP4JTree in a working way. Could not find a solution yet (Thomas).
+
 #include <string>
 
-namespace CPP4JTree{
-
 // only the announcement that there is a class called TreeNode (a hint for the compiler).
-// So it can be used in TreeIterator's methods.
+// So it can be used in TreeIterator's methods. This works because TreeIterator only has a pointer
+// to a TreeNode (Which means, that the size of TreeNode can be unknown).
 class TreeNode;
 
 typedef unsigned int KeyType;
@@ -24,7 +25,5 @@ public:
     TreeIterator& operator--();
     bool operator==(const TreeIterator &rhs);
     bool operator!=(const TreeIterator &rhs);
-};
-
 };
 #endif // TREEITERATOR_H
