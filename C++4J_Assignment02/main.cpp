@@ -14,14 +14,15 @@ int main()
     cout << "The count of testTree01 is " << testTree01->count() << endl;
     assert(testTree01->count() == 0);
 
-    testTree01[3] = "TestString1";
-    assert(testTree01->count() == 1);
+    testTree01[3];
+//    testTree01[3] = "TestString1";
+//    assert(testTree01->count() == 1);
 
-    testTree01[2] = "TestString2";
-    assert(testTree01->count() == 2);
+//    testTree01[2] = "TestString2";
+//    assert(testTree01->count() == 2);
 
-    testTree01[2] = "NewTestString2";
-    assert(testTree01->count() == 2);
+//    testTree01[2] = "NewTestString2";
+//    assert(testTree01->count() == 2);
 
     cout << "Checkpoint X reached." << endl;
 
