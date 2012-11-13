@@ -21,6 +21,15 @@ public:
         this->m_right = 0;
     }
 
+    TreeNode* findFirst();
+    TreeNode* findLast();
+
+    KeyType m_key;
+    ValueType m_value;
+    TreeNode *m_left;
+    TreeNode *m_right;
+    TreeNode *m_up;
+
     // This getter returns the key of the node
     KeyType& key()
     {
@@ -101,15 +110,6 @@ public:
             }
         }
     }
-
-    TreeNode* findFirst();
-    TreeNode* findLast();
-
-    KeyType m_key;
-    ValueType m_value;
-    TreeNode *m_left;
-    TreeNode *m_right;
-    TreeNode *m_up;
 };
 
 Tree::Tree()
@@ -117,6 +117,11 @@ Tree::Tree()
     m_count = 0;
     m_root = 0;
 }
+
+void clear();
+bool contains(const KeyType& key);
+TreeIterator begin();
+TreeIterator end();
 
 unsigned int Tree::count() const
 {
@@ -130,17 +135,23 @@ ValueType& Tree::operator[](const KeyType& key)
     if (!this->m_root)
     {
         this->m_root = new TreeNode(0, key, "");
+        m_count++;
     }
     TreeNode *temp = this->m_root->find(key);
+    //cout << temp->m_key<< endl;
 
     if (!temp)
     {
+        // TreeNode not found
         // TODO New node has to be created. m_root.insert(key, "")
         // just anything yet, has to be replaced:
+        cout << "TEMP" << endl;
+        m_count++;
         return this->m_root->m_value;
     }
     else
     {
+        cout << "Else" << endl;
          return temp->m_value;
     }
 }

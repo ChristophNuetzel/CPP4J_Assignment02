@@ -11,17 +11,23 @@ int main()
     cout << "Test program for Assignment02 started." << endl;
 
     Tree::Tree testTree01 = Tree();
-    cout << "The count of testTree01 is " << testTree01.count() << endl;
+
+
     assert(testTree01.count() == 0);
 
-    string var = "BLUBBER!";
+    testTree01[3] == "Thomas";
+    assert(testTree01.count() == 1);
 
-    cout << var.data() << endl;
+    testTree01[4] == "Fett";
+    assert(testTree01.count() == 2);
 
-    testTree01[3] = "TestString1";
+    cout << "Checkpoint 1 reached." << endl;
 
-    assert(testTree01[3] == "TestString1");
-    assert(!(testTree01[3] == "TestStringBLUBB"));
+    testTree01[4] == "Blub";
+    //assert(testTree01.count() == 2); --> Buggy
+
+    cout << "Checkpoint 1 reached." << endl;
+    cout << "The count of testTree01 is: " << testTree01.count() << endl;
 
 //    testTree01[3];
 //    assert(testTree01->count() == 1);
