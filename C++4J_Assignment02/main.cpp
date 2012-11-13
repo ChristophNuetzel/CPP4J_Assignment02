@@ -10,12 +10,20 @@ int main()
 {
     cout << "Test program for Assignment02 started." << endl;
 
-    Tree::Tree *testTree01 = new Tree();
-    cout << "The count of testTree01 is " << testTree01->count() << endl;
-    assert(testTree01->count() == 0);
+    Tree::Tree testTree01 = Tree();
+    cout << "The count of testTree01 is " << testTree01.count() << endl;
+    assert(testTree01.count() == 0);
 
-    testTree01[3];
-//    testTree01[3] = "TestString1";
+    string var = "BLUBBER!";
+
+    cout << var.data() << endl;
+
+    testTree01[3] = "TestString1";
+
+    assert(testTree01[3] == "TestString1");
+    assert(!(testTree01[3] == "TestStringBLUBB"));
+
+//    testTree01[3];
 //    assert(testTree01->count() == 1);
 
 //    testTree01[2] = "TestString2";
@@ -27,7 +35,7 @@ int main()
     cout << "Checkpoint X reached." << endl;
 
 
-    delete testTree01;
+//    delete testTree01;
     cout << "Test program for Assignment02 finished successfully!" << endl;
 
     return 0;

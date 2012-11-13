@@ -3,43 +3,10 @@
 
 using namespace std;
 
-Tree::Tree()
-{
-    m_count = 0;
-    m_root = 0;
-}
-
-unsigned int Tree::count() const
-{
-    return m_count;
-}
-
-ValueType& Tree::operator[](const KeyType& key)
-{
-    cout << "blubb" << endl;
-    ValueType tempString = "Hallooechen!";
-    return tempString;
-//    if (!this->m_root)
-//    {
-//        this->m_root = new TreeNode(0, key, "");
-//    }
-//    TreeNode *temp = this->m_root->find(key);
-
-//    if (!temp)
-//    {
-//        // TODO New node has to be created. m_root.insert(key, "")
-//        return "";
-//    }
-//    else
-//    {
-//         return temp->m_value;
-//    }
-}
-
 // TreeNode represents the inner structure and logic of the tree. It is implemented as an inner class.
 class TreeNode
 {
-private:
+public:
     // TODO Destructor for recursive Deletion of all TreeNodes
 
     // This constructor creates the first node in a tree
@@ -144,3 +111,36 @@ private:
     TreeNode *m_right;
     TreeNode *m_up;
 };
+
+Tree::Tree()
+{
+    m_count = 0;
+    m_root = 0;
+}
+
+unsigned int Tree::count() const
+{
+    return m_count;
+}
+
+ValueType& Tree::operator[](const KeyType& key)
+{
+    cout << "operator[] aufgerufen" << endl;
+
+    if (!this->m_root)
+    {
+        this->m_root = new TreeNode(0, key, "");
+    }
+    TreeNode *temp = this->m_root->find(key);
+
+    if (!temp)
+    {
+        // TODO New node has to be created. m_root.insert(key, "")
+        // just anything yet, has to be replaced:
+        return this->m_root->m_value;
+    }
+    else
+    {
+         return temp->m_value;
+    }
+}
