@@ -129,7 +129,30 @@ Tree::Tree()
     m_root = 0;
 }
 
-void clear();
+void Tree::clear(){
+
+    //if root node ist not 0
+    if(this->m_root){
+
+        // if the right node is not 0
+        if (this->m_root->m_right)
+        {
+            m_root->m_right = 0;
+            return this->clear();
+        }
+
+        // if the right node is not 0
+        if (this->m_root->m_left)
+        {
+            m_root->m_left = 0;
+            return this->clear();
+        }
+
+    }
+    this->m_count = 0;
+    cout << "whole tree deleted!" << endl;
+}
+
 bool contains(const KeyType& key);
 TreeIterator begin();
 TreeIterator end();
@@ -156,7 +179,6 @@ ValueType& Tree::operator[](const KeyType& key)
     {
         // TreeNode not found
         // A new node has to be created (by calling the root node and its method insert).
-
         // count is incremented
         m_count++;
 

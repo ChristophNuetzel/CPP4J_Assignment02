@@ -74,6 +74,30 @@ int main()
     assert(testTree01[4] == "Blubb");
     assert(!(testTree01[4] == "Fett"));
 
+    cout << "Checkpoint 6 reached." << endl;
+
+    testTree01[88] = "TestString[88]";
+    testTree01[55] = "TestString[55]";
+    testTree01[66] = "TestString[66]";
+    testTree01[77] = "TestString[77]";
+    testTree01[11] = "TestString[11]";
+    testTree01[12] = "TestString[12]";
+
+    testTree01.clear();
+    assert(testTree01.count() == 0);
+
+    assert(!(testTree01[88] == "TestString[88]"));
+    assert(!(testTree01[55] == "TestString[55]"));
+    assert(!(testTree01[66] == "TestString[66]"));
+    assert(!(testTree01[77] == "TestString[77]"));
+    assert(!(testTree01[11] == "TestString[11]"));
+    assert(!(testTree01[12] == "TestString[12]"));
+
+    cout << "Checkpoint 7 reached." << endl;
+
+    cout << "Do something nice here" << endl;
+
+    cout << "Checkpoint 8 reached." << endl;
 
     cout << "Test program for Assignment02 finished successfully!" << endl;
 
