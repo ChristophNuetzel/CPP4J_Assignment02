@@ -86,14 +86,26 @@ int main()
     testTree01.clear();
     assert(testTree01.count() == 0);
 
-    assert(!(testTree01[88] == "TestString[88]"));
+    assert(!(testTree01.contains(88)));
+    assert(!(testTree01.contains(55)));
+    assert(!(testTree01.contains(66)));
+    assert(!(testTree01.contains(77)));
+    assert(!(testTree01.contains(11)));
+    assert(!(testTree01.contains(12)));
+
+    cout << testTree01.count() << endl;
+
+    assert(!(testTree01[9456] == "TestString[88]"));
     assert(!(testTree01[55] == "TestString[55]"));
     assert(!(testTree01[66] == "TestString[66]"));
     assert(!(testTree01[77] == "TestString[77]"));
     assert(!(testTree01[11] == "TestString[11]"));
     assert(!(testTree01[12] == "TestString[12]"));
 
+    cout << testTree01.count() << endl;
+    cout << testTree01.countCompleteNodes() << endl;
     cout << "Checkpoint 7 reached." << endl;
+
 
     cout << "Do something nice here" << endl;
 

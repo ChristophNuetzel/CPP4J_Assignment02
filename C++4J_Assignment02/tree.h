@@ -21,6 +21,9 @@ public:
     // This method returns the count of nodes in the tree
     unsigned int count() const;
 
+    // This method returns the count of all complete Nodes in the tree
+    unsigned int countCompleteNodes();
+
     // This method deletes the whole tree and sets null pointer.
     void clear();
 
@@ -37,6 +40,7 @@ public:
 
 private:
     unsigned int m_count;
+    unsigned int m_countCompleteNodes;
     TreeNode *m_root;
 };
 

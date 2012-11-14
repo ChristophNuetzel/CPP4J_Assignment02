@@ -125,12 +125,18 @@ public:
 
 Tree::Tree()
 {
+    // TODO Destructor for recursive Deletion of all TreeNodes
+
+    m_countCompleteNodes = 0;
     m_count = 0;
     m_root = 0;
 }
 
-void Tree::clear(){
+TreeIterator begin();
+TreeIterator end();
 
+void Tree::clear()
+{
     //if root node ist not 0
     if(this->m_root){
 
@@ -147,15 +153,44 @@ void Tree::clear(){
             m_root->m_left = 0;
             return this->clear();
         }
-
     }
     this->m_count = 0;
     cout << "whole tree deleted!" << endl;
 }
 
-bool contains(const KeyType& key);
-TreeIterator begin();
-TreeIterator end();
+bool Tree::contains(const KeyType& key)
+{
+    TreeNode *findNode = m_root->find(key);
+    if(findNode){
+        return true;
+    }
+    return false;
+}
+
+unsigned int Tree::countCompleteNodes()
+{
+    // NOT implemented yet
+    // Fucking shit a the bottom doesn´t work
+
+    /*if root node ist not 0
+    if(this->m_root){
+
+        // if the right node is not 0
+        if (this->m_root->m_right->m_value != "")
+        {
+            m_countCompleteNodes++;
+            return this->countCompleteNodes();
+        }
+
+        // if the right node is not 0
+        if (this->m_root->m_left->m_value != "")
+        {
+            m_countCompleteNodes++;
+            return this->countCompleteNodes();
+        }
+    }*/
+    return m_countCompleteNodes;
+}
 
 unsigned int Tree::count() const
 {
