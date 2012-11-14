@@ -42,40 +42,51 @@ public:
         return m_value;
     }
 
-    // This method inserts the key-value-pair in the tree ordered by adding or replacing another TreeNode.
-    void insert(KeyType key,
+    // This method inserts the key-value-pair in the tree ordered by adding or replacing another TreeNode and returns it.
+    TreeNode* insert(KeyType key,
                 ValueType value)
     {
+        // checking if the given key does already exist
         TreeNode *foundNode = this->find(key);
         if (foundNode)
         {
             foundNode->m_value = value;
-            return;
+            return foundNode;
         } else
         {
+            // going the right direction in the tree
             if (this->m_key < key)
             {
-                if (!this->m_right){
-                    this->m_right =  new TreeNode(this, key, value); /* NEUEN KNOTEN ERSTELLEN (THIS IN KONSTRUKTOR ALS PARAMETER MITGEBEN!) */
-                    return;
+                // if there is no right child, the new node is created and returned.
+                if (!this->m_right)
+                {
+                    TreeNode *newRightTreeNode = new TreeNode(this, key, value); /* NEUEN KNOTEN ERSTELLEN (THIS IN KONSTRUKTOR ALS PARAMETER MITGEBEN!) */
+                    this->m_right =  newRightTreeNode;
+                    return newRightTreeNode;
                 }
-            }
-            else
-            {
-                return this->m_right->insert(key, value);
+
+                else
+                {
+                    // recursive method call if there is a right child
+                    return this->m_right->insert(key, value);
+                }
             }
 
+            // going the left direction in the tree
             if (this->m_key > key)
             {
+                // if there is no left child, the new node is created and returned.
                 if (!this->m_left)
                 {
-                    this->m_left = new TreeNode(this, key, value); /* NEUEN KNOTEN ERSTELLEN (THIS IN KONSTRUKTOR ALS PARAMETER MITGEBEN!) */
-                    return;
+                    TreeNode *newLeftTreeNode = new TreeNode(this, key, value); /* NEUEN KNOTEN ERSTELLEN (THIS IN KONSTRUKTOR ALS PARAMETER MITGEBEN!) */
+                    this->m_left = newLeftTreeNode;
+                    return newLeftTreeNode;
+                } 
+                else
+                {
+                    // recursive method call if there is a left child
+                    return this->m_left->insert(key, value);
                 }
-            }
-            else
-            {
-                return this->m_left->insert(key, value);
             }
         }
     }
@@ -130,28 +141,30 @@ unsigned int Tree::count() const
 
 ValueType& Tree::operator[](const KeyType& key)
 {
-    cout << "operator[] aufgerufen" << endl;
 
+    // if the root node doesn't exist, it is created.
     if (!this->m_root)
     {
         this->m_root = new TreeNode(0, key, "");
         m_count++;
     }
+
+    // returns the the node relating to the given key or null if the key doesn't exist yet.
     TreeNode *temp = this->m_root->find(key);
-    //cout << temp->m_key<< endl;
 
     if (!temp)
     {
         // TreeNode not found
-        // TODO New node has to be created. m_root.insert(key, "")
-        // just anything yet, has to be replaced:
-        cout << "TEMP" << endl;
+        // A new node has to be created (by calling the root node and its method insert).
+
+        // count is incremented
         m_count++;
-        return this->m_root->m_value;
+
+        // the value of the new node is returned directly.
+        return this->m_root->insert(key, "")->m_value;
     }
     else
     {
-        cout << "Else" << endl;
          return temp->m_value;
     }
 }
