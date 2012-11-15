@@ -132,6 +132,15 @@ Tree::Tree()
     m_root = 0;
 }
 
+Tree::Tree(const Tree& rhs)
+{
+    // TODO Destructor for recursive Deletion of all TreeNodes
+
+    this->m_countCompleteNodes = rhs.m_countCompleteNodes;
+    this->m_count = rhs.m_count;
+    this->m_root = rhs.m_root;
+}
+
 TreeIterator begin();
 TreeIterator end();
 

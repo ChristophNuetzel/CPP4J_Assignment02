@@ -16,6 +16,7 @@ typedef std::string ValueType;
 class TreeIterator
 {
 public:
+    TreeIterator();
     TreeIterator(TreeNode* node = 0);
     TreeIterator(const TreeIterator& rhs);
     TreeIterator& operator=(const TreeIterator& rhs);
@@ -25,5 +26,8 @@ public:
     TreeIterator& operator--();
     bool operator==(const TreeIterator &rhs);
     bool operator!=(const TreeIterator &rhs);
+private:
+    KeyType m_key;
+    ValueType m_value;
 };
 #endif // TREEITERATOR_H

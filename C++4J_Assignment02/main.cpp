@@ -106,6 +106,8 @@ int main()
     cout << testTree01.countCompleteNodes() << endl;
     cout << "Checkpoint 7 reached." << endl;
 
+    testTree01[11] = "TestString[11]";
+    testTree01[12] = "TestString[12]";
 
     cout << "Do something nice here" << endl;
 
