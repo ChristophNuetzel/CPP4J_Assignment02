@@ -8,6 +8,17 @@ class TreeNode
 {
 public:
     // TODO Destructor for recursive Deletion of all TreeNodes
+    ~TreeNode()
+    {
+        if (this->m_right)
+        {
+           delete this->m_right;
+        }
+        if (this->m_left)
+        {
+           delete this->m_left;
+        }
+    }
 
     // This constructor creates the first node in a tree
     TreeNode(TreeNode* parent,
@@ -146,23 +157,15 @@ TreeIterator end();
 
 void Tree::clear()
 {
-    //if root node ist not 0
+    //if root node ist not 0 delete is called
     if(this->m_root){
 
-        // if the right node is not 0
-        if (this->m_root->m_right)
-        {
-            m_root->m_right = 0;
-            return this->clear();
-        }
-
-        // if the right node is not 0
-        if (this->m_root->m_left)
-        {
-            m_root->m_left = 0;
-            return this->clear();
-        }
+        // calling the destructor of the root node.
+        // the recursive deletion of alle the nodes is handled in the TreeNode destructor
+        delete this->m_root;
     }
+
+    // setting the node counter to 0.
     this->m_count = 0;
     cout << "whole tree deleted!" << endl;
 }
