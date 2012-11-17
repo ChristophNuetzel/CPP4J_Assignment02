@@ -32,8 +32,25 @@ public:
         this->m_right = 0;
     }
 
-    TreeNode* findFirst();
-    TreeNode* findLast();
+    // finds the first element in the tree (the one with the smallest key)
+    TreeNode* findFirst()
+    {
+        if ((this->m_left = 0))
+        {
+            return this;
+        }
+        return this->m_left->findFirst();
+    }
+
+    // finds the first element in the tree (the one with the largest key)
+    TreeNode* findLast()
+    {
+        if ((this->m_right = 0))
+        {
+            return this;
+        }
+        return this->m_right->findLast();
+    }
 
     KeyType m_key;
     ValueType m_value;
@@ -71,7 +88,7 @@ public:
                 // if there is no right child, the new node is created and returned.
                 if (!this->m_right)
                 {
-                    TreeNode *newRightTreeNode = new TreeNode(this, key, value); /* NEUEN KNOTEN ERSTELLEN (THIS IN KONSTRUKTOR ALS PARAMETER MITGEBEN!) */
+                    TreeNode *newRightTreeNode = new TreeNode(this, key, value);
                     this->m_right =  newRightTreeNode;
                     return newRightTreeNode;
                 }
@@ -89,7 +106,7 @@ public:
                 // if there is no left child, the new node is created and returned.
                 if (!this->m_left)
                 {
-                    TreeNode *newLeftTreeNode = new TreeNode(this, key, value); /* NEUEN KNOTEN ERSTELLEN (THIS IN KONSTRUKTOR ALS PARAMETER MITGEBEN!) */
+                    TreeNode *newLeftTreeNode = new TreeNode(this, key, value);
                     this->m_left = newLeftTreeNode;
                     return newLeftTreeNode;
                 } 
@@ -100,6 +117,7 @@ public:
                 }
             }
         }
+        return 0;
     }
 
     // This method returns the TreeNode containing the given key, else it is 0.
@@ -131,13 +149,12 @@ public:
                 return 0;
             }
         }
+        return 0;
     }
 };
 
 Tree::Tree()
 {
-    // TODO Destructor for recursive Deletion of all TreeNodes
-
     m_countCompleteNodes = 0;
     m_count = 0;
     m_root = 0;
@@ -145,15 +162,10 @@ Tree::Tree()
 
 Tree::Tree(const Tree& rhs)
 {
-    // TODO Destructor for recursive Deletion of all TreeNodes
-
     this->m_countCompleteNodes = rhs.m_countCompleteNodes;
     this->m_count = rhs.m_count;
     this->m_root = rhs.m_root;
 }
-
-TreeIterator begin();
-TreeIterator end();
 
 void Tree::clear()
 {
@@ -236,4 +248,49 @@ ValueType& Tree::operator[](const KeyType& key)
     {
          return temp->m_value;
     }
+}
+
+TreeIterator Tree::begin()
+{
+}
+
+TreeIterator Tree::end()
+{
+}
+
+TreeIterator::TreeIterator()
+{
+    m_currentTreeNode = 0;
+}
+
+TreeIterator& TreeIterator::operator=(const TreeIterator& rhs)
+{
+    this->m_currentTreeNode = rhs.m_currentTreeNode;
+    return *this;
+}
+
+bool TreeIterator::operator==(const TreeIterator &rhs)
+{
+    if(this->m_currentTreeNode == rhs.m_currentTreeNode){
+        return true;
+    }
+    return false;
+}
+
+bool TreeIterator::operator!=(const TreeIterator &rhs)
+{
+    if(this->m_currentTreeNode != rhs.m_currentTreeNode){
+        return true;
+    }
+    return false;
+}
+
+ValueType& TreeIterator::value()
+{
+    return this->m_currentTreeNode->m_value;
+}
+
+KeyType& TreeIterator::key()
+{
+    return this->m_currentTreeNode->m_key;
 }

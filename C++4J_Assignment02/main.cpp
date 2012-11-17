@@ -12,7 +12,6 @@ int main()
 
     Tree::Tree testTree01 = Tree();
 
-
     assert(testTree01.count() == 0);
 
     testTree01[3] = "Thomas";

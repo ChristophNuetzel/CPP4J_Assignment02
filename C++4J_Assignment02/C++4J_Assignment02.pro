@@ -3,10 +3,8 @@ CONFIG += console
 CONFIG -= qt
 
 SOURCES += main.cpp \
-    tree.cpp \
-    treeiterator.cpp
+    tree.cpp
 
 HEADERS += \
-    tree.h \
-    treeiterator.h
+    tree.h
 

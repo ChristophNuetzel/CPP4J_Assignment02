@@ -2,9 +2,30 @@
 #define TREE_H
 
 #include <string>
-#include <treeiterator.h>
+
+typedef unsigned int KeyType;
+typedef std::string ValueType;
 
 class TreeNode;
+
+class TreeIterator
+{
+
+public:
+    TreeIterator();
+    TreeIterator(TreeNode* node = 0);
+    TreeIterator(const TreeIterator& rhs);
+    TreeIterator& operator=(const TreeIterator& rhs);
+    ValueType& value();
+    KeyType& key();
+    TreeIterator& operator++();
+    TreeIterator& operator--();
+    bool operator==(const TreeIterator &rhs);
+    bool operator!=(const TreeIterator &rhs);
+
+private:
+    TreeNode* m_currentTreeNode;
+};
 
 class Tree
 {
