@@ -35,7 +35,7 @@ public:
     // finds the first element in the tree (the one with the smallest key)
     TreeNode* findFirst()
     {
-        if ((this->m_left = 0))
+        if ((!this->m_left))
         {
             return this;
         }
@@ -45,7 +45,7 @@ public:
     // finds the first element in the tree (the one with the largest key)
     TreeNode* findLast()
     {
-        if ((this->m_right = 0))
+        if ((!this->m_right))
         {
             return this;
         }
@@ -252,15 +252,26 @@ ValueType& Tree::operator[](const KeyType& key)
 
 TreeIterator Tree::begin()
 {
+    TreeNode* temp = this->m_root->findFirst();
+
+    return TreeIterator(temp);
 }
 
 TreeIterator Tree::end()
 {
+    // end() returns only an iterator with a TreeNode * == 0
+    return TreeIterator(0);
 }
 
-TreeIterator::TreeIterator()
+TreeIterator Tree::find(const KeyType &value)
 {
-    m_currentTreeNode = 0;
+    TreeNode* temp = this->m_root->find(value);
+    return TreeIterator(temp);
+}
+
+TreeIterator::TreeIterator(TreeNode *node)
+{
+    m_currentTreeNode = node;
 }
 
 TreeIterator& TreeIterator::operator=(const TreeIterator& rhs)
@@ -293,4 +304,66 @@ ValueType& TreeIterator::value()
 KeyType& TreeIterator::key()
 {
     return this->m_currentTreeNode->m_key;
+}
+
+// TODO Return a new TreeIterator, or return this??? --> return this!
+TreeIterator& TreeIterator::operator++()
+{
+    if (this->m_currentTreeNode->m_right)
+    {
+        this->m_currentTreeNode = this->m_currentTreeNode->m_right->findFirst();
+        return *this;
+    }
+    else
+    {
+        TreeNode *parentNode = this->m_currentTreeNode->m_up;
+        TreeNode *lastParentNode = this->m_currentTreeNode;
+
+        while (parentNode)
+        {
+            if  (parentNode->m_left == lastParentNode)
+            {
+                this->m_currentTreeNode = parentNode;
+                return *this;
+            }
+            else
+            {
+                lastParentNode = parentNode;
+                parentNode = parentNode->m_up;
+            }
+        }
+        this->m_currentTreeNode = 0;
+        return *this;
+    }
+}
+
+TreeIterator& TreeIterator::operator--()
+{
+    // The same as the ++operator (only in reverse!)
+    if (this->m_currentTreeNode->m_left)
+    {
+        this->m_currentTreeNode = this->m_currentTreeNode->m_left->findLast();
+        return *this;
+    }
+    else
+    {
+        TreeNode *parentNode = this->m_currentTreeNode->m_up;
+        TreeNode *lastParentNode = this->m_currentTreeNode;
+
+        while (parentNode)
+        {
+            if (parentNode->m_right == lastParentNode)
+            {
+                this->m_currentTreeNode = parentNode;
+                return *this;
+            }
+            else
+            {
+                lastParentNode = parentNode;
+                parentNode = parentNode->m_up;
+            }
+        }
+        this->m_currentTreeNode = 0;
+        return *this;
+    }
 }

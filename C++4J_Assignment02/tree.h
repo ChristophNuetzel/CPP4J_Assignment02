@@ -12,7 +12,6 @@ class TreeIterator
 {
 
 public:
-    TreeIterator();
     TreeIterator(TreeNode* node = 0);
     TreeIterator(const TreeIterator& rhs);
     TreeIterator& operator=(const TreeIterator& rhs);

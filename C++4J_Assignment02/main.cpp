@@ -82,24 +82,24 @@ int main()
     testTree01[11] = "TestString[11]";
     testTree01[12] = "TestString[12]";
 
-    testTree01.clear();
-    assert(testTree01.count() == 0);
+//    testTree01.clear();
+//    assert(testTree01.count() == 0);
 
-    assert(!(testTree01.contains(88)));
+  /*  assert(!(testTree01.contains(88)));
     assert(!(testTree01.contains(55)));
     assert(!(testTree01.contains(66)));
     assert(!(testTree01.contains(77)));
     assert(!(testTree01.contains(11)));
-    assert(!(testTree01.contains(12)));
+    assert(!(testTree01.contains(12)));*/
 
     cout << testTree01.count() << endl;
 
-    assert(!(testTree01[9456] == "TestString[88]"));
+  /*  assert(!(testTree01[9456] == "TestString[88]"));
     assert(!(testTree01[55] == "TestString[55]"));
     assert(!(testTree01[66] == "TestString[66]"));
     assert(!(testTree01[77] == "TestString[77]"));
     assert(!(testTree01[11] == "TestString[11]"));
-    assert(!(testTree01[12] == "TestString[12]"));
+    assert(!(testTree01[12] == "TestString[12]"));*/
 
     cout << testTree01.count() << endl;
     cout << testTree01.countCompleteNodes() << endl;
@@ -111,6 +111,16 @@ int main()
     cout << "Do something nice here" << endl;
 
     cout << "Checkpoint 8 reached." << endl;
+
+    for(TreeIterator i=testTree01.begin(); i!=testTree01.end(); ++i) {
+       std::cout << i.key() << ": " << i.value().data() << std::endl;
+    }
+
+    cout << "Also the decrementing iterator:" << endl;
+
+    for(TreeIterator i=testTree01.find(4); i!=testTree01.begin(); --i) {
+       std::cout << i.key() << ": " << i.value().data() << std::endl;
+    }
 
     cout << "Test program for Assignment02 finished successfully!" << endl;
 
