@@ -115,10 +115,16 @@ int main()
 
     cout << "Checkpoint 7 reached." << endl;
 
+    testTree01[10];
+    testTree01[3];
+    testTree01[11];
+
     testTree01[11] = "TestString[11]";
     testTree01[12] = "TestString[12]";
 
     cout << "Checkpoint 8 reached." << endl;
+
+    cout << "The incrementing iterator:" << endl;
 
     for(TreeIterator i=testTree01.begin(); i!=testTree01.end(); ++i) {
        std::cout << i.key() << ": " << i.value().data() << std::endl;
