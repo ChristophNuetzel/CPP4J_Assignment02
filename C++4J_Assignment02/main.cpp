@@ -94,7 +94,7 @@ int main()
     cout << "Decrementing the whole tree:" << endl;
 
     for(TreeIterator i=testTree01.last(); i!=testTree01.end(); --i) {
-       std::cout << i.key() << ": " << i.value().data() << std::endl;
+        std::cout << i.key() << ": " << i.value().data() << std::endl;
     }
 
     cout << "Decrementing from key == 4:" << endl;
