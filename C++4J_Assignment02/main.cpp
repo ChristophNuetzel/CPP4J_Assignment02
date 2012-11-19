@@ -7,7 +7,7 @@ using namespace std;
 // This program tests the Tree class which was implemented in Assignment02
 // of C++ For Java Programmers at the Beuth Hochschule fuer Technik WS 2012/13
 int main()
-{
+{    
     cout << "Test program for Assignment02 started." << endl;
 
     Tree::Tree testTree01 = Tree();

@@ -97,5 +97,4 @@ private:
     // The root node of the tree.
     TreeNode *m_root;
 };
-
 #endif // TREE_H
