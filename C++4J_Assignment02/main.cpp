@@ -118,7 +118,7 @@ int main()
 
     cout << "Also the decrementing iterator:" << endl;
 
-    for(TreeIterator i=testTree01.find(4); i!=testTree01.begin(); --i) {
+    for(TreeIterator i=testTree01.find(4); i!=testTree01.end(); --i) {
        std::cout << i.key() << ": " << i.value().data() << std::endl;
     }
 

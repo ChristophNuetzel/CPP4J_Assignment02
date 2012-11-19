@@ -3,11 +3,27 @@
 
 using namespace std;
 
+/** The class TreeNode **/
 // TreeNode represents the inner structure and logic of the tree. It is implemented as an inner class.
 class TreeNode
 {
-public:
-    // TODO Destructor for recursive Deletion of all TreeNodes
+public:   
+    // the key of the node
+    KeyType m_key;
+
+    // the value corresponding to the key
+    ValueType m_value;
+
+    // the left child node
+    TreeNode *m_left;
+
+    // the right child node
+    TreeNode *m_right;
+
+    // the parent node
+    TreeNode *m_up;
+
+    // This destructor takes care of deleting all child nodes of the node that is deleted (by the help of recursion).
     ~TreeNode()
     {
         if (this->m_right)
@@ -32,7 +48,7 @@ public:
         this->m_right = 0;
     }
 
-    // finds the first element in the tree (the one with the smallest key)
+    // finds the first element in the subtree of the calling node (the one with the smallest key)
     TreeNode* findFirst()
     {
         if ((!this->m_left))
@@ -42,7 +58,7 @@ public:
         return this->m_left->findFirst();
     }
 
-    // finds the first element in the tree (the one with the largest key)
+    // finds the first element in the subtree of the calling node (the one with the largest key)
     TreeNode* findLast()
     {
         if ((!this->m_right))
@@ -51,12 +67,6 @@ public:
         }
         return this->m_right->findLast();
     }
-
-    KeyType m_key;
-    ValueType m_value;
-    TreeNode *m_left;
-    TreeNode *m_right;
-    TreeNode *m_up;
 
     // This getter returns the key of the node
     KeyType& key()
@@ -152,6 +162,9 @@ public:
         return 0;
     }
 };
+
+
+/** The class Tree **/
 
 Tree::Tree()
 {
@@ -259,7 +272,7 @@ TreeIterator Tree::begin()
 
 TreeIterator Tree::end()
 {
-    // end() returns only an iterator with a TreeNode * == 0
+    // end() returns only an iterator with a TreeNode* == 0
     return TreeIterator(0);
 }
 
@@ -268,6 +281,9 @@ TreeIterator Tree::find(const KeyType &value)
     TreeNode* temp = this->m_root->find(value);
     return TreeIterator(temp);
 }
+
+
+/** The class TreeIterator**/
 
 TreeIterator::TreeIterator(TreeNode *node)
 {
@@ -306,14 +322,18 @@ KeyType& TreeIterator::key()
     return this->m_currentTreeNode->m_key;
 }
 
-// TODO Return a new TreeIterator, or return this??? --> return this!
 TreeIterator& TreeIterator::operator++()
 {
+    // If the current TreeNode has a right child the first element of this child tree is the next TreeNode
     if (this->m_currentTreeNode->m_right)
     {
         this->m_currentTreeNode = this->m_currentTreeNode->m_right->findFirst();
         return *this;
     }
+    // If the current TreeNode doesn't have a right child, the parent node is checked if it is the next TreeNode
+    // If the current TreeNode is the left child of the parent node, the parent note is the next TreeNode
+    // If the current TreeNode is the right child of the parent node, the search continues in the parents' parent node.
+    // If there are no more parent nodes, then there is no following node to the current TreeNode.
     else
     {
         TreeNode *parentNode = this->m_currentTreeNode->m_up;
@@ -337,9 +357,9 @@ TreeIterator& TreeIterator::operator++()
     }
 }
 
+// This method works exactly like the ++operator (only in reverse!)
 TreeIterator& TreeIterator::operator--()
 {
-    // The same as the ++operator (only in reverse!)
     if (this->m_currentTreeNode->m_left)
     {
         this->m_currentTreeNode = this->m_currentTreeNode->m_left->findLast();
