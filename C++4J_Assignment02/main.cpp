@@ -3,6 +3,7 @@
 #include <assert.h>
 
 using namespace std;
+using namespace CPP4JTree;
 
 // This program tests the Tree class which was implemented in Assignment02
 // of C++ For Java Programmers at the Beuth Hochschule fuer Technik WS 2012/13
@@ -10,7 +11,7 @@ int main()
 {    
     cout << "Test program for Assignment02 started." << endl;
 
-    Tree::Tree testTree01 = Tree();
+    Tree testTree01 = Tree();
 
     assert(testTree01.count() == 0);
 
@@ -102,7 +103,6 @@ int main()
     assert(!(testTree01[12] == "TestString[12]"));*/
 
     cout << testTree01.count() << endl;
-    cout << testTree01.countCompleteNodes() << endl;
     cout << "Checkpoint 7 reached." << endl;
 
     testTree01[11] = "TestString[11]";
@@ -119,7 +119,7 @@ int main()
     cout << "Also the decrementing iterator:" << endl;
 
     for(TreeIterator i=testTree01.find(4); i!=testTree01.end(); --i) {
-       std::cout << i.key() << ": " << i.value().data() << std::endl;
+       cout << i.key() << ": " << i.value().data() << endl;
     }
 
     cout << "Test program for Assignment02 finished successfully!" << endl;

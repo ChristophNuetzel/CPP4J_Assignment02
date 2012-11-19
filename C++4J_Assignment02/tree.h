@@ -3,6 +3,8 @@
 
 #include <string>
 
+namespace CPP4JTree
+{
 // these typedefs are used for better readability.
 typedef unsigned int KeyType;
 typedef std::string ValueType;
@@ -91,10 +93,8 @@ private:
     // The number of nodes in the tree.
     unsigned int m_count;
 
-    // The number of used notes (node whose strings are not empty strings).
-    unsigned int m_countCompleteNodes;
-
     // The root node of the tree.
     TreeNode *m_root;
 };
+}
 #endif // TREE_H

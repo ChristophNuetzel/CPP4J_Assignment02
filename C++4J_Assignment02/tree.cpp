@@ -2,12 +2,13 @@
 #include <iostream>
 
 using namespace std;
+using namespace CPP4JTree;
 
 /** The class TreeNode **/
 // TreeNode represents the inner structure and logic of the tree. It is implemented as an inner class.
-class TreeNode
+class CPP4JTree::TreeNode
 {
-public:   
+public:
     // the key of the node
     KeyType m_key;
 
@@ -166,21 +167,19 @@ public:
 
 /** The class Tree **/
 
-Tree::Tree()
+CPP4JTree::Tree::Tree()
 {
-    m_countCompleteNodes = 0;
     m_count = 0;
     m_root = 0;
 }
 
-Tree::Tree(const Tree& rhs)
+CPP4JTree::Tree::Tree(const Tree& rhs)
 {
-    this->m_countCompleteNodes = rhs.m_countCompleteNodes;
     this->m_count = rhs.m_count;
     this->m_root = rhs.m_root;
 }
 
-void Tree::clear()
+void CPP4JTree::Tree::clear()
 {
     //if root node ist not 0 delete is called
     if(this->m_root){
@@ -192,10 +191,10 @@ void Tree::clear()
 
     // setting the node counter to 0.
     this->m_count = 0;
-    cout << "whole tree deleted!" << endl;
+    std::cout << "whole tree deleted!" << std::endl;
 }
 
-bool Tree::contains(const KeyType& key)
+bool CPP4JTree::Tree::contains(const KeyType& key)
 {
     TreeNode *findNode = m_root->find(key);
     if(findNode){
@@ -204,40 +203,16 @@ bool Tree::contains(const KeyType& key)
     return false;
 }
 
-unsigned int Tree::countCompleteNodes()
-{
-    // NOT implemented yet
-    // Fucking shit a the bottom doesn´t work
-
-    /*if root node ist not 0
-    if(this->m_root){
-
-        // if the right node is not 0
-        if (this->m_root->m_right->m_value != "")
-        {
-            m_countCompleteNodes++;
-            return this->countCompleteNodes();
-        }
-
-        // if the right node is not 0
-        if (this->m_root->m_left->m_value != "")
-        {
-            m_countCompleteNodes++;
-            return this->countCompleteNodes();
-        }
-    }*/
-    return m_countCompleteNodes;
-}
-
-unsigned int Tree::count() const
+unsigned int CPP4JTree::Tree::count() const
 {
     return m_count;
 }
 
-ValueType& Tree::operator[](const KeyType& key)
+ValueType& CPP4JTree::Tree::operator[](const KeyType& key)
 {
 
     // if the root node doesn't exist, it is created.
+
     if (!this->m_root)
     {
         this->m_root = new TreeNode(0, key, "");
@@ -263,20 +238,20 @@ ValueType& Tree::operator[](const KeyType& key)
     }
 }
 
-TreeIterator Tree::begin()
+TreeIterator CPP4JTree::Tree::begin()
 {
     TreeNode* temp = this->m_root->findFirst();
 
     return TreeIterator(temp);
 }
 
-TreeIterator Tree::end()
+TreeIterator CPP4JTree::Tree::end()
 {
     // end() returns only an iterator with a TreeNode* == 0
     return TreeIterator(0);
 }
 
-TreeIterator Tree::find(const KeyType &value)
+TreeIterator CPP4JTree::Tree::find(const KeyType &value)
 {
     TreeNode* temp = this->m_root->find(value);
     return TreeIterator(temp);
@@ -285,18 +260,18 @@ TreeIterator Tree::find(const KeyType &value)
 
 /** The class TreeIterator**/
 
-TreeIterator::TreeIterator(TreeNode *node)
+CPP4JTree::TreeIterator::TreeIterator(TreeNode *node)
 {
     m_currentTreeNode = node;
 }
 
-TreeIterator& TreeIterator::operator=(const TreeIterator& rhs)
+TreeIterator& CPP4JTree::TreeIterator::operator=(const TreeIterator& rhs)
 {
     this->m_currentTreeNode = rhs.m_currentTreeNode;
     return *this;
 }
 
-bool TreeIterator::operator==(const TreeIterator &rhs)
+bool CPP4JTree::TreeIterator::operator==(const TreeIterator &rhs)
 {
     if(this->m_currentTreeNode == rhs.m_currentTreeNode){
         return true;
@@ -304,7 +279,7 @@ bool TreeIterator::operator==(const TreeIterator &rhs)
     return false;
 }
 
-bool TreeIterator::operator!=(const TreeIterator &rhs)
+bool CPP4JTree::TreeIterator::operator!=(const TreeIterator &rhs)
 {
     if(this->m_currentTreeNode != rhs.m_currentTreeNode){
         return true;
@@ -312,17 +287,17 @@ bool TreeIterator::operator!=(const TreeIterator &rhs)
     return false;
 }
 
-ValueType& TreeIterator::value()
+ValueType& CPP4JTree::TreeIterator::value()
 {
     return this->m_currentTreeNode->m_value;
 }
 
-KeyType& TreeIterator::key()
+KeyType& CPP4JTree::TreeIterator::key()
 {
     return this->m_currentTreeNode->m_key;
 }
 
-TreeIterator& TreeIterator::operator++()
+TreeIterator& CPP4JTree::TreeIterator::operator++()
 {
     // If the current TreeNode has a right child the first element of this child tree is the next TreeNode
     if (this->m_currentTreeNode->m_right)
@@ -358,7 +333,7 @@ TreeIterator& TreeIterator::operator++()
 }
 
 // This method works exactly like the ++operator (only in reverse!)
-TreeIterator& TreeIterator::operator--()
+TreeIterator& CPP4JTree::TreeIterator::operator--()
 {
     if (this->m_currentTreeNode->m_left)
     {
