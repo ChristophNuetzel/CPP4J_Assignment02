@@ -191,7 +191,6 @@ void CPP4JTree::Tree::clear()
 
     // setting the node counter to 0.
     this->m_count = 0;
-    std::cout << "whole tree deleted!" << std::endl;
 }
 
 bool CPP4JTree::Tree::contains(const KeyType& key)
@@ -241,6 +240,13 @@ ValueType& CPP4JTree::Tree::operator[](const KeyType& key)
 TreeIterator CPP4JTree::Tree::begin()
 {
     TreeNode* temp = this->m_root->findFirst();
+
+    return TreeIterator(temp);
+}
+
+TreeIterator CPP4JTree::Tree::last()
+{
+    TreeNode* temp = this->m_root->findLast();
 
     return TreeIterator(temp);
 }

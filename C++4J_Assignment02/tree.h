@@ -83,6 +83,9 @@ public:
     // This method returns a TreeIterator, which represents the first node in the tree (the one with the smallest key).
     TreeIterator begin();
 
+    // This method returns a TreeIterator, which represents the last node in the tree (the one with the largest key).
+    TreeIterator last();
+
     // This method returns a TreeIterator, which represents the end of a tree (not the last node, but one node AFTER the last node).
     TreeIterator end();
 
