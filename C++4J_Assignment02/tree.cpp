@@ -173,8 +173,6 @@ CPP4JTree::Tree::Tree()
     m_root = 0;
 }
 
-//TODO: copy consructor für Tree & Iterator
-//TODO: Zuweisungs-Operator für Tree & Iterator
 CPP4JTree::Tree::Tree(const Tree& rhs)
 {
     this->m_count = rhs.m_count;
@@ -343,7 +341,6 @@ TreeIterator& CPP4JTree::TreeIterator::operator++()
 // This method works exactly like the ++operator (only in reverse!)
 TreeIterator& CPP4JTree::TreeIterator::operator--()
 {
-    // TODO: findlast() for -- bei iterator.end() --> Nach Konvention würde dann auf den letzten Node gesprungen werden.
     if (this->m_currentTreeNode->m_left)
     {
         this->m_currentTreeNode = this->m_currentTreeNode->m_left->findLast();
