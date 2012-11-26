@@ -130,9 +130,9 @@ int main()
        std::cout << i.key() << ": " << i.value().data() << std::endl;
     }
 
-    cout << "Also the decrementing iterator:" << endl;
+    cout << "Also the decrementing iterator beginning with key == 11:" << endl;
 
-    for(TreeIterator i=testTree01.find(4); i!=testTree01.end(); --i) {
+    for(TreeIterator i=testTree01.find(11); i!=testTree01.end(); --i) {
        cout << i.key() << ": " << i.value().data() << endl;
     }
 

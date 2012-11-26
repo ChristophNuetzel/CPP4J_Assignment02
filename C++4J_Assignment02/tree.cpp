@@ -187,6 +187,7 @@ void CPP4JTree::Tree::clear()
         // calling the destructor of the root node.
         // the recursive deletion of alle the nodes is handled in the TreeNode destructor
         delete this->m_root;
+        this->m_root = 0;
     }
 
     // setting the node counter to 0.
@@ -195,10 +196,14 @@ void CPP4JTree::Tree::clear()
 
 bool CPP4JTree::Tree::contains(const KeyType& key)
 {
-    TreeNode *findNode = m_root->find(key);
-    if(findNode){
-        return true;
+    if (this->m_root)
+    {
+        TreeNode *findNode = m_root->find(key);
+        if(findNode){
+            return true;
+        }
     }
+
     return false;
 }
 
